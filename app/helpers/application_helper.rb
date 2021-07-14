@@ -15,6 +15,13 @@ module ApplicationHelper
     end
   end
 
+  def group_classes(classes)
+    links = classes.map do |klass|
+      link_to klass, object_path(object: klass.underscore, version: ruby_version), class: "text-blue-400 hover:underline"
+    end
+    safe_join(links, ", ")
+  end
+
   # Map a method source file into a url to Github.com
   def github_url(ruby_doc)
     version, file, line = ruby_doc.source_location.split(":")
